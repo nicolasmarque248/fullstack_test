@@ -24,6 +24,9 @@ jobs:
       with:
         node-version: '14'  # Puedes especificar la versión de Node.js que necesitas
 
+    - name: List files in the codebase directory
+      run: ls codebase/rdicidr-0.1.0
+
     - name: Install dependencies
       run: npm install
 
