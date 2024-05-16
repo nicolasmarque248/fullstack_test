@@ -24,23 +24,24 @@ jobs:
       with:
         node-version: '14'  # Puedes especificar la versión de Node.js que necesitas
 
+    - name: List files in the codebase directory
+      run: ls codebase/rdicidr-0.1.0
+
     - name: Install dependencies
       run: npm install
 
     - name: Run linter
-      run: npm run lint
+      run: npm run lint --prefix codebase/rdicidr-0.1.0/package.json
 
     - name: Run formatter
-      run: npm run prettier
-
+      run: npm run prettier --prefix codebase/rdicidr-0.1.0/package.json
     - name: Run tests
-      run: CI=true npm run test
+      run: CI=true npm run test --prefix codebase/rdicidr-0.1.0/package.json
 
     - name: Build project
-      run: npm run build
-
+      run: npm run build --prefix codebase/rdicidr-0.1.0/package.json
     - name: Build Docker image
       run: |
-        docker build -t codebase:latest .
+        docker build -t codebase:latest ./codebase/rdicidr-0.1.0
       env:
         DOCKER_BUILDKIT: 1
