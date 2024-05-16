@@ -41,6 +41,6 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t codebase:latest .
+        docker build -t codebase:latest ./codebase/rdicidr-0.1.0
       env:
         DOCKER_BUILDKIT: 1
