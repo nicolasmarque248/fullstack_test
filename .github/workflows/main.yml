@@ -1,0 +1,46 @@
+# .github/workflows/ci.yml
+
+name: Fullstack test
+
+on:
+  push:
+    branches:
+      - prod
+  pull_request:
+    branches:
+      - prod
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Puedes especificar la versión de Node.js que necesitas
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run linter
+      run: npm run lint
+
+    - name: Run formatter
+      run: npm run prettier
+
+    - name: Run tests
+      run: CI=true npm run test
+
+    - name: Build project
+      run: npm run build
+
+    - name: Build Docker image
+      run: |
+        docker build -t codebase:latest .
+      env:
+        DOCKER_BUILDKIT: 1
