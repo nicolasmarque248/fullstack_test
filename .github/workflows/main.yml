@@ -31,16 +31,15 @@ jobs:
       run: npm install
 
     - name: Run linter
-      run: npm run lint --prefix fullstack_test/codebase/rdicidr-0.1.0
+      run: npm run lint --prefix codebase/rdicidr-0.1.0/package.json
 
     - name: Run formatter
-      run: npm run prettier --prefix fullstack_test/codebase/rdicidr-0.1.0
+      run: npm run prettier --prefix codebase/rdicidr-0.1.0/package.json
     - name: Run tests
-      run: CI=true npm run test --prefix fullstack_test/codebase/rdicidr-0.1.0
+      run: CI=true npm run test --prefix codebase/rdicidr-0.1.0/package.json
 
     - name: Build project
-      run: npm run build --prefix fullstack_test/codebase/rdicidr-0.1.0
-
+      run: npm run build --prefix codebase/rdicidr-0.1.0/package.json
     - name: Build Docker image
       run: |
         docker build -t codebase:latest ./codebase/rdicidr-0.1.0
